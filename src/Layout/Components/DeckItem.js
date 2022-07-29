@@ -1,7 +1,7 @@
 import { deleteDeck } from "../../utils/api/index"
 import { Link, useHistory } from 'react-router-dom'
 
-function DeckItem({ deck = {} }) {
+function DeckItem({ deck }) {
 
   const history = useHistory()
 
@@ -21,7 +21,7 @@ function DeckItem({ deck = {} }) {
         <p className="mb-1">{deck.description}</p>
         <Link to={`/decks/${deck.id}`} className="btn btn-secondary mr-1"><span className="oi oi-eye"></span> View</Link>
         <Link to={`/decks/${deck.id}/study`} className="btn btn-primary"><span className="oi oi-book"></span> Study</Link>
-        <button type="delete" className="btn btn-danger float-right" onClick={handleDeleteDeck}><span className="oi oi-trash"></span></button>
+        <button type="delete" className="btn btn-danger float-right" onClick={() => handleDeleteDeck}><span className="oi oi-trash"></span></button>
       </div>
     </>
   )
