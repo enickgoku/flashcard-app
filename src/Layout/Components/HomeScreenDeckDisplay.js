@@ -23,7 +23,7 @@ function HomeScreenDeckDisplay() {
     <>
       <Link to={`/decks/new`} className="btn btn-secondary mb-2"><span className="oi oi-plus"></span> Create Deck</Link>
       <div className="list-group">
-          {decks.map((deck) => <DeckItem key={deck.id} deck={deck} />)}
+          {decks.map(deck => <DeckItem key={deck.id} deck={deck} />)}
       </div>
     </>
   )

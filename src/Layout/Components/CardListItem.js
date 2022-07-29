@@ -1,13 +1,32 @@
 import { useEffect, useState } from 'react'
-import { readCard } from '../../utils/api/index' 
 
 function CardListItem({currentDeck}){
-  // console.log(currentDeck)
-  const [cards, setCards] = useState({})
-  
+  const [cards, setCards] = useState([])
 
+  useEffect(() => {
+    const readData = async () => {
+      try {
+        setCards(currentDeck)
+      } catch(error) {
+        console.log(error.name)
+      }
+    }
+    readData()
+  }, [cards, currentDeck])
+  
   return (
-    <h1>working</h1>
+    <>
+      {cards.map((card, index) => (
+        <div key ={index} className="row align-items-start">
+          <div className="col">
+            hi
+          </div>
+          <div className="col">
+            hi
+          </div>
+        </div>
+      ))}
+    </>
   )
 }
 
