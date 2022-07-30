@@ -18,24 +18,24 @@ function Layout() {
       <div className="container">
         <Switch>
           <Route exact={true} path={`/`}>
-            <HomeScreenDeckDisplay decks />
+            <HomeScreenDeckDisplay />
           </Route>
-          <Route path={'/decks/:deckId/study'}>
+          <Route exact path={'/decks/:deckId/study'}>
             <StudyScreen />
           </Route>
-          <Route path={'/decks/new'}>
+          <Route exact path={'/decks/new'}>
             <CreateDeckScreen />
           </Route>
-          <Route path={'/decks/:deckId'}>
+          <Route exact path={'/decks/:deckId'}>
             <DeckScreen />
           </Route>
-          <Route path={'/decks/:deckId/edit'}>
+          <Route exact path={'/decks/:deckId/edit'}>
             <EditDeckScreen />
           </Route>
-          <Route path={'/decks/:deckId/cards/new'}>
+          <Route exact path={'/decks/:deckId/cards/new'}>
             <AddCardScreen />
           </Route>
-          <Route path={'/decks/:deckId/cards/:cardId/edit'}>
+          <Route exact path={'/decks/:deckId/cards/:cardId/edit'}>
             <EditCardScreen />
           </Route>
           <Route>

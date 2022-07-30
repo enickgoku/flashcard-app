@@ -1,14 +1,30 @@
-function Navbar({ currentDeck }) {
+import { useRouteMatch, Link, useParams } from 'react-router-dom'
+
+function Navbar({ currentDeck = {} }) {
+  const match = useRouteMatch()
+  const path = match.path
+  const { deckId } = useParams()
+
+
   return (
-    <nav aria-label="breadcrumb">
-      <ol className="breadcrumb">
-        <li li className="breadcrumb-item"><a href="/"><span className="oi oi-home"></span> Home</a></li>
-        <li className="breadcrumb-item active">{currentDeck.name}</li>
-        {/* <li class="breadcrumb-item active" aria-current="page">Data</li> */}
-        {/* Add conditional for extra active class */ }
-         {/* conditional that renders extra list if url is on certain page use useroutematch and route ids */}
-      </ol>
-    </nav>
+    <>
+      { deckId && !path.match(/deck/)  ? (
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span> Home</Link></li>
+          <li className="breadcrumb-item active">{currentDeck.name}</li>
+        </ol>
+      </nav>
+      ) : (
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span> Home</Link></li>
+          <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}> {currentDeck.name}</Link></li>
+          <li class="breadcrumb-item active" aria-current="page"> Edit Deck</li>
+        </ol>
+      </nav>
+      )}
+    </>
   )
 }
 
