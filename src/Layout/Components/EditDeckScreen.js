@@ -1,5 +1,5 @@
 import Navbar from '../Navbar'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { readDeck } from '../../utils/api/index'
 
@@ -27,24 +27,20 @@ function EditDeckScreen() {
     <>
       <Navbar currentDeck={deck} />
       <h1>Edit Deck</h1>
-      <form>
-      <div className='d-flex justify-content-center'>
-        <div className="form-group">
-          <label htmlFor='name'>Name</label>
-          <input type="name" className="form-control" id="name" placeholder={placeHolderOne}/>
+      <form className='form-group'>
+          <div className="form-group">
+            <label htmlFor='name'>Name</label>
+            <input type="name" className="form-control form-control-lg" id="name" placeholder={placeHolderOne}/>
           </div>
-        </div>
-      <div className='d-flex justify-content-center'>
-        <div class="form-group">
-        <label htmlFor='description'>Description</label>
-        <textarea class="form-control" id="description" rows="3" placeholder={placeHolderTwo}></textarea>
-        </div>
-      </div>
+          <div class="form-group">
+            <label htmlFor='description'>Description</label>
+            <textarea className="form-control form-control-lg" id="description" rows="3" placeholder={placeHolderTwo}></textarea>
+          </div>
       </form>
-      <div className='d-flex justify-content-start'>
-        <button className="btn btn-secondary" type="cancel">Cancel</button>
-        <button className="btn btn-primary" type="submit">Submit</button>
-      </div>
+        <div className='d-flex'>
+          <a href={`/decks/${deckId}`} className="btn btn-secondary mr-1" type="cancel">Cancel</a>
+          <button className="btn btn-primary" type="submit">Submit</button>
+        </div>
     </>
   )
 }
