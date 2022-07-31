@@ -15,14 +15,14 @@ function Navbar({ currentDeck = {} }) {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span> Home</Link></li>
-          <li className="breadcrumb-item active">{currentDeck.name}</li>
+          <li className="breadcrumb-item active">{currentDeck?.name}</li>
         </ol>
       </nav>
       ) : (
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span> Home</Link></li>
-          <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}> {currentDeck.name}</Link></li>
+          <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}> {currentDeck?.name}</Link></li>
           <li className="breadcrumb-item active" aria-current="page"> Edit Deck</li>
         </ol>
       </nav>
