@@ -20,7 +20,7 @@ function Navbar({ currentDeck = {} }) {
         <ol className="breadcrumb">
           <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span> Home</Link></li>
           <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}> {currentDeck.name}</Link></li>
-          <li class="breadcrumb-item active" aria-current="page"> Edit Deck</li>
+          <li className="breadcrumb-item active" aria-current="page"> Edit Deck</li>
         </ol>
       </nav>
       )}
