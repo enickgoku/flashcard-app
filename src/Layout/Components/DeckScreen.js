@@ -1,12 +1,13 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { readDeck } from '../../utils/api/index'
+import { readDeck, deleteDeck } from '../../utils/api/index'
 import Navbar from '../Navbar'
 import CardItem from './CardItem'
 
 function DeckScreen() {
   const { deckId } = useParams()
   const [currentDeck, setCurrentDeck] = useState([])
+  const history = useHistory()
 
   useEffect(() => {
     async function getCurrentDeck() {
@@ -15,6 +16,18 @@ function DeckScreen() {
     }
     getCurrentDeck()
   }, [deckId])
+
+  const removeDeck = async () => {
+    if(window.confirm(`Delete this deck? You will not be able to recover it`)){
+      try{
+        history.push('/')
+        await deleteDeck(currentDeck?.id)
+      } catch(error) {
+        console.log(error)
+      }
+    }
+  }
+
   return (
     <>
       <Navbar currentDeck={currentDeck} />
@@ -25,7 +38,7 @@ function DeckScreen() {
           <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary mr-1"><span className="oi oi-pencil"></span> Edit</Link>
           <Link to={`/decks/${deckId}/study`} className="btn btn-primary"><span className="oi oi-book"></span> Study</Link>
           <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary ml-1"><span className="oi oi-plus"></span> Add Cards</Link>
-          <button type="delete" className="btn btn-danger ml-auto"><span className="oi oi-trash"></span></button>
+          <button type="delete" className="btn btn-danger ml-auto" onClick={removeDeck}><span className="oi oi-trash"></span></button>
         </div>
       </div>
       <h1 className='mt-2'>Cards</h1>

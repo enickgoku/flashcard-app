@@ -1,6 +1,7 @@
 import CardListItem from "./CardListItem"
 
-function CardItem({currentDeck}) {
+function CardItem({ currentDeck }) {
+
   return (
     <>
       <div className="d-flex justify-content-around">
