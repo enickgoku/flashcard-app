@@ -38,6 +38,7 @@ function AddCardScreen() {
     event.preventDefault()
     createCard(deckId, formData)
     .then(setFormData(initialFormData))
+    history.push(`/decks/${deckId}`)
   }
 
   return (
