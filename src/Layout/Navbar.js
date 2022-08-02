@@ -8,6 +8,7 @@ function Navbar({ currentDeck = {} }) {
   const pathMatchTwo = !path.includes('/edit')
   const pathMatchThree = !path.includes('/new')
   const pathMatchFour = path.includes('/cards')
+  const pathMatchFive = path.includes('/decks')
 
 
   return (
