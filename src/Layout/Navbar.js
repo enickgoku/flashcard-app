@@ -8,9 +8,10 @@ function Navbar({ currentDeck = {} }) {
   const pathMatchTwo = !path.includes('/edit')
   const pathMatchThree = !path.includes('/new')
   const pathMatchFour = path.includes('/cards')
-  const pathMatchFive = path.includes('/decks')
+  const pathMatchFive = path.includes('/decks/new')
+  const pathMatchSix = path.includes('/decks')
 
-
+  // redo all of this and do strict paths
   return (
     <>
       { pathMatch && pathMatchTwo && pathMatchThree ? (
@@ -20,7 +21,7 @@ function Navbar({ currentDeck = {} }) {
           <li className="breadcrumb-item active">{currentDeck?.name}</li>
         </ol>
       </nav>
-      ) : (
+      ) : (pathMatchSix || pathMatchFour) && currentDeck ? (
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span> Home</Link></li>
@@ -32,7 +33,14 @@ function Navbar({ currentDeck = {} }) {
           )}
         </ol>
       </nav>
-      )}
+      ) : pathMatchFive && !currentDeck ? (
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span> Home</Link></li>
+            <li className="breadcrumb-item active" aria-current="page"> Create Deck</li>
+          </ol>
+        </nav>  
+      ) : null }
     </>
   )
 }
