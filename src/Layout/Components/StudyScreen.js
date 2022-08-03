@@ -1,6 +1,7 @@
 import { useEffect, useState, Link } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { readDeck } from '../../utils/api/index'
+import Navbar from '../Navbar'
 
 function StudyScreen() {
   const history = useHistory()
@@ -24,6 +25,17 @@ function StudyScreen() {
     getAndSetDeck()
   }, [deckId])
 
+  if(deck.isValid === false) {
+    return (
+      <>
+        <Navbar />
+        <h1>{deck.name}: Study</h1>
+        <h2>Not enough cards.</h2>
+        <p>You need at least 3 cards to study.  There are {cards.length} in this deck.</p>
+        <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary ml-1"><span className="oi oi-plus"></span> Add Cards</Link>
+      </>
+    )
+  }
 
   return (
     <>
