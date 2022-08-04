@@ -55,7 +55,7 @@ function EditDeckScreen() {
           <label htmlFor='name'>Name</label>
           <input type="text" name="name" className="form-control form-control-lg" id="name" placeholder={placeHolderOne} value={formData.name} onChange={handleChange}/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor='description'>Description</label>
           <textarea type="text" name="description" className="form-control form-control-lg" id="description" rows="3" placeholder={placeHolderTwo} value={formData.description} onChange={handleChange}></textarea>
         </div>
