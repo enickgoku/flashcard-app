@@ -58,7 +58,7 @@ function EditCardScreen() {
           <label htmlFor='front'>Front</label>
           <textarea type="text" name="front" className="form-control form-control-lg" id="front" placeholder={card.front} value={formData.front} onChange={handleChange} />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor='back'>Back</label>
           <textarea type="text" name="back" className="form-control form-control-lg" id="back" rows="3" placeholder={card.back} value={formData.back} onChange={handleChange} />
         </div>

@@ -46,7 +46,7 @@ function StudyScreen() {
   }
 
   const renderView = (
-    <div className="card list-item-active mb-3">
+    <div className="d-flex card list-item-active mb-3">
       <div className="card-body">
         
         <h4 className="card-title">
