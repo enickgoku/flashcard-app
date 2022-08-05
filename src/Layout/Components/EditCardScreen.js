@@ -7,32 +7,35 @@ function EditCardScreen() {
   const { deckId, cardId } = useParams()
   const history = useHistory()
   const [currentDeck, setCurrentDeck] = useState([])
-  const [card, setCard] = useState([])
 
-  const initialFormData = {
-    id: cardId,
+  const [formData, setFormData] = useState({
+    id: +cardId,
+    deckId: +deckId,
     front: "",
     back: "",
-    deckId: parseInt(deckId),
-  }
-
-  const [formData, setFormData] = useState(initialFormData)
+  })
 
   useEffect(() => {
     const getDeck = async () => {
       const response = await readDeck(deckId)
       setCurrentDeck(response)
     }
-    getDeck()
-  }, [deckId])
 
-  useEffect(() => {
-    const getCard = async () => {
-      const currentCard = await readCard(cardId)
-      setCard(currentCard)
-    }
+    const getCard = async () =>
+      readCard(cardId)
+        .then(card => {
+          setFormData({
+            id: +cardId,
+            deckId: +deckId,
+            front: card.front,
+            back: card.back,
+          })
+        }
+      )
+
+    getDeck()
     getCard()
-  }, [cardId])
+  }, [cardId, deckId])
 
   const handleChange = async ({ target }) => {
     setFormData({
@@ -44,7 +47,6 @@ function EditCardScreen() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const response = await updateCard(formData)
-    .then(setFormData(initialFormData))
     history.push(`/decks/${deckId}`)
     return response
   }
@@ -56,11 +58,11 @@ function EditCardScreen() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor='front'>Front</label>
-          <textarea type="text" name="front" className="form-control form-control-lg" id="front" placeholder={card.front} value={formData.front} onChange={handleChange} />
+          <textarea type="text" name="front" className="form-control form-control-lg" id="front" placeholder="Front of card" value={formData.front} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor='back'>Back</label>
-          <textarea type="text" name="back" className="form-control form-control-lg" id="back" rows="3" placeholder={card.back} value={formData.back} onChange={handleChange} />
+          <textarea type="text" name="back" className="form-control form-control-lg" id="back" rows="3" placeholder="Back of card" value={formData.back} onChange={handleChange} />
         </div>
         <div className='d-flex'>
           <a href={`/decks/${deckId}`} className="btn btn-secondary mr-1" type="cancel">Cancel</a>

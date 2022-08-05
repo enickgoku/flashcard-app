@@ -7,6 +7,12 @@ function EditDeckScreen() {
   const history = useHistory()
   const { deckId } = useParams()
   const [deck, setDeck] = useState([])
+  const [formData, setFormData] = useState({
+    id: deckId,
+    name: "",
+    description: "",
+    cards: [],
+  })
 
   useEffect(() => {
     const getDeck = async () => {
@@ -14,6 +20,11 @@ function EditDeckScreen() {
       try {
         const response = await readDeck(deckId)
         setDeck(response)
+        setFormData({
+          id: response.id,
+          name: response.name,
+          description: response.description,
+        })
       } catch (error) {
         console.log(error)
       }
@@ -21,13 +32,11 @@ function EditDeckScreen() {
     getDeck()
   }, [deckId])
 
-  let initialFormData = {
-    id: deckId,
-    name: "",
-    description: "",
-  }
-
-  const [formData, setFormData] = useState(initialFormData)
+  // let initialFormData = {
+  //   id: deckId,
+  //   name: deck.name,
+  //   description: deck.description,
+  // }
   
   const handleChange = async (event) => {
     setFormData({
@@ -40,11 +49,7 @@ function EditDeckScreen() {
     event.preventDefault()
     updateDeck(formData)
     .then((updatedDeck) => history.push(`/decks/${updatedDeck?.id}`))
-    .then(setFormData(initialFormData))
   }
-
-  const placeHolderOne = deck?.name
-  const placeHolderTwo = deck?.description
 
   return (
     <>
@@ -53,11 +58,11 @@ function EditDeckScreen() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor='name'>Name</label>
-          <input type="text" name="name" className="form-control form-control-lg" id="name" placeholder={placeHolderOne} value={formData.name} onChange={handleChange}/>
+          <input type="text" name="name" className="form-control form-control-lg" id="name" placeholder="Deck Name" value={formData.name} onChange={handleChange}/>
         </div>
         <div className="form-group">
           <label htmlFor='description'>Description</label>
-          <textarea type="text" name="description" className="form-control form-control-lg" id="description" rows="3" placeholder={placeHolderTwo} value={formData.description} onChange={handleChange}></textarea>
+          <textarea type="text" name="description" className="form-control form-control-lg" id="description" rows="3" placeholder="Description" value={formData.description} onChange={handleChange}></textarea>
         </div>
         <div className='d-flex'>
           <a href={`/decks/${deckId}`} className="btn btn-secondary mr-1" type="cancel">Cancel</a>

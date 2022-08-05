@@ -11,7 +11,7 @@ function Navbar({ currentDeck = {} }) {
   const pathMatchDeckScreen = path.includes(`/decks/:deckId`)
   const pathMatchEditDeck = path.includes(`/decks/:deckId/edit`)
 
-  // redo all of this and do strict paths
+  // will render a different navbar based on the url
   return (
     <>
       { pathMatchStudy ? (
@@ -48,9 +48,9 @@ function Navbar({ currentDeck = {} }) {
       ) : pathMatchEditDeck ? (
         <nav aria-label="breadcrumb" className='d-flex flex-column'>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span> Home</Link></li>
-            <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}> {currentDeck?.name}</Link></li>
-            <li className="breadcrumb-item active"> Edit Deck</li>
+            <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"></span>Home</Link></li>
+            <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>{currentDeck?.name}</a></li>
+            <li className="breadcrumb-item active">Edit Deck</li>
           </ol>
         </nav>
       ) : pathMatchDeckScreen ? (
