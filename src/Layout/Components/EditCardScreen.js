@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { readCard, readDeck, updateCard } from '../../utils/api/index'

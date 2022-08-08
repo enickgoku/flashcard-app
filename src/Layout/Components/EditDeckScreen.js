@@ -1,3 +1,4 @@
+import React from 'react'
 import Navbar from '../Navbar'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'

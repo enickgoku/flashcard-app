@@ -1,3 +1,4 @@
+import React from 'react'
 import { useRouteMatch, Link, useParams } from 'react-router-dom'
 
 function Navbar({ currentDeck = {} }) {

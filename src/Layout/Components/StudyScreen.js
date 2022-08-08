@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams, useHistory, Link } from 'react-router-dom'
 import { readDeck } from '../../utils/api/index'
