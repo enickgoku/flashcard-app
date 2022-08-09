@@ -12,6 +12,8 @@ function StudyScreen() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const history = useHistory()
 
+  //this component keeps track of multiples states in order to make rendering conditional
+
   useEffect(() => {
     const getAndSetDeck = async () => {
       try {
@@ -48,18 +50,14 @@ function StudyScreen() {
 
   const renderView = (
     <div className="d-flex card list-item-active mb-3">
-      <div className="card-body">
-        
+      <div className="card-body"> 
         <h4 className="card-title">
           Card {currentIndex + 1} of {cards?.length} cards.
         </h4>
-    
         <p className="card-text">
           {front ? cards[currentIndex]?.front : cards[currentIndex]?.back}
         </p>
-      
         <button className="btn btn-secondary mr-1" onClick={flipButton}>Flip</button>
-        
         {!front ? <button className="btn btn-primary" onClick={nextButtonHandler}>Next</button> : null}
       </div>
   </div>

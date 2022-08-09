@@ -1,6 +1,9 @@
 import React from 'react'
 
 function Form({ formData, handleChange }) {
+
+  // Brings in data from Add card and Edit card.
+
   return (
     <>
       <div className="form-group">
